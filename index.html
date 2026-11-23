@@ -14,22 +14,59 @@
     </header>
 
     <main>
-        <section>
-            <h2>Find Your Next Read</h2>
-            <div class="search">
-                <input type="text" placeholder="Search for books">
-                <button>Search</button>
+        <section aria-labelledby="search-heading">
+            <h2 id="search-heading">Find Your Next Read</h2>
+            <form id="search-form" novalidate>
+                <div class="field">
+                    <label for="keywords">Search keywords (required)</label>
+                    <p id="keywords-help" class="hint">Enter 2–100 characters, such as LGBTQ or queer fantasy.</p>
+                    <input id="keywords" name="keywords" type="text" value="lgbtq"
+                        required minlength="2" maxlength="100"
+                        aria-describedby="keywords-help keywords-error">
+                    <p id="keywords-error" class="error"></p>
+                </div>
+
+                <p id="year-help" class="hint">Publication years are optional. Leave both blank to include books with any or unknown publication year.</p>
+                <div class="year-fields">
+                    <div class="field">
+                        <label for="min-year">Earliest publication year</label>
+                        <input id="min-year" name="min-year" type="number" min="0" step="1"
+                            placeholder="e.g., 2000" aria-describedby="year-help min-year-error">
+                        <p id="min-year-error" class="error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="max-year">Latest publication year</label>
+                        <input id="max-year" name="max-year" type="number" min="0" step="1"
+                            placeholder="e.g., 2026" aria-describedby="year-help max-year-error">
+                        <p id="max-year-error" class="error"></p>
+                    </div>
+                </div>
+
+                <p id="form-status" class="error" role="alert"></p>
+                <button id="search-button" type="submit">Search</button>
+            </form>
+        </section>
+
+        <section aria-labelledby="books-heading">
+            <h2 id="books-heading">Discover Books</h2>
+            <div class="sort-control">
+                <label for="sort-books">Sort books</label>
+                <select id="sort-books">
+                    <option value="relevance">Relevance</option>
+                    <option value="title">Title: A to Z</option>
+                    <option value="newest">Publication year: newest first</option>
+                    <option value="oldest">Publication year: oldest first</option>
+                </select>
             </div>
+            <p class="hint">Each search loads up to 50 books from Open Library. Year filters narrow the results; books with unknown years are not included when a year filter is used.</p>
+            <p id="results-status" role="status" aria-live="polite" aria-atomic="true"></p>
+            <ul id="books" class="book-list" aria-labelledby="books-heading" role="list"></ul>
+            <noscript><p>Please enable JavaScript to search for and display books.</p></noscript>
         </section>
+    </main>
 
-        <section>
-            <h2>Discover Books</h2>
-            <p>Books will appear here.</p>
-        </section>
-</main>
-
-<footer>
-    <p>Priderator - CS2100 Capstone Project</p>
-</footer>
+    <footer>
+        <p>Priderator - CS2100 Capstone Project</p>
+    </footer>
 </body>
 </html>
